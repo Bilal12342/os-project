@@ -1,0 +1,44 @@
+[SCAN] Scanning: G:\
+[DEBUG] ClamAV Output:
+
+----------- SCAN SUMMARY -----------
+Known viruses: 8706589
+Engine version: 1.4.2
+Scanned directories: 1
+Scanned files: 3
+Infected files: 0
+Data scanned: 0.00 MB
+Data read: 0.00 MB (ratio 0.00:1)
+Time: 22.989 sec (0 m 22 s)
+Start Date: 2025:05:11 19:48:56
+End Date:   2025:05:11 19:49:19
+
+[DEBUG] ClamAV Error:
+
+[OK] No threats found.
+[SCAN] Scanning: H:\
+[DEBUG] ClamAV Output:
+H:\eicar_test_1.com: Win.Test.EICAR_HDB-1 FOUND
+H:\eicar_test_1.com: Removed.
+H:\eicar_test_2.com: Win.Test.EICAR_HDB-1 FOUND
+H:\eicar_test_2.com: Removed.
+H:\eicar_test_3.com: Win.Test.EICAR_HDB-1 FOUND
+H:\eicar_test_3.com: Removed.
+H:\eicar_test_4.com: Win.Test.EICAR_HDB-1 FOUND
+H:\eicar_test_4.com: Removed.
+
+----------- SCAN SUMMARY -----------
+Known viruses: 8706589
+Engine version: 1.4.2
+Scanned directories: 1
+Scanned files: 7
+Infected files: 4
+Data scanned: 0.00 MB
+Data read: 0.00 MB (ratio 0.00:1)
+Time: 24.675 sec (0 m 24 s)
+Start Date: 2025:05:11 19:49:24
+End Date:   2025:05:11 19:49:48
+
+[DEBUG] ClamAV Error:
+
+[INFECTED] 4 infected file(s) found and removed.
