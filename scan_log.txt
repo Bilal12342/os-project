@@ -1,0 +1,18 @@
+[SCAN] Scanning: H:\
+[CLAMAV] Output:
+
+----------- SCAN SUMMARY -----------
+Known viruses: 8706589
+Engine version: 1.4.2
+Scanned directories: 1
+Scanned files: 3
+Infected files: 0
+Data scanned: 0.00 MB
+Data read: 0.00 MB (ratio 0.00:1)
+Time: 21.713 sec (0 m 21 s)
+Start Date: 2025:05:11 20:36:01
+End Date:   2025:05:11 20:36:22
+
+[CLAMAV] Errors:
+
+[SAFE] No threats found.
