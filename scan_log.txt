@@ -16,3 +16,65 @@ End Date:   2025:05:11 20:36:22
 [CLAMAV] Errors:
 
 [SAFE] No threats found.
+[SCAN] Scanning: H:\
+[CLAMAV] Output:
+
+----------- SCAN SUMMARY -----------
+Known viruses: 8706589
+Engine version: 1.4.2
+Scanned directories: 1
+Scanned files: 3
+Infected files: 0
+Data scanned: 0.00 MB
+Data read: 0.00 MB (ratio 0.00:1)
+Time: 23.029 sec (0 m 23 s)
+Start Date: 2025:05:11 20:37:32
+End Date:   2025:05:11 20:37:55
+
+[CLAMAV] Errors:
+
+[SAFE] No threats found.
+[SCAN] Scanning: G:\
+[CLAMAV] Output:
+G:\eicar_test_1.com: Win.Test.EICAR_HDB-1 FOUND
+G:\eicar_test_1.com: Removed.
+G:\eicar_test_2.com: Win.Test.EICAR_HDB-1 FOUND
+G:\eicar_test_2.com: Removed.
+G:\eicar_test_3.com: Win.Test.EICAR_HDB-1 FOUND
+G:\eicar_test_3.com: Removed.
+G:\eicar_test_4.com: Win.Test.EICAR_HDB-1 FOUND
+G:\eicar_test_4.com: Removed.
+
+----------- SCAN SUMMARY -----------
+Known viruses: 8706589
+Engine version: 1.4.2
+Scanned directories: 1
+Scanned files: 7
+Infected files: 4
+Data scanned: 0.00 MB
+Data read: 0.00 MB (ratio 0.00:1)
+Time: 28.318 sec (0 m 28 s)
+Start Date: 2025:05:12 08:44:37
+End Date:   2025:05:12 08:45:05
+
+[CLAMAV] Errors:
+
+[ALERT] 4 infected file(s) found and removed.
+[SCAN] Scanning: G:\
+[CLAMAV] Output:
+
+----------- SCAN SUMMARY -----------
+Known viruses: 8706589
+Engine version: 1.4.2
+Scanned directories: 1
+Scanned files: 3
+Infected files: 0
+Data scanned: 0.00 MB
+Data read: 0.00 MB (ratio 0.00:1)
+Time: 22.591 sec (0 m 22 s)
+Start Date: 2025:05:12 08:45:54
+End Date:   2025:05:12 08:46:17
+
+[CLAMAV] Errors:
+
+[SAFE] No threats found.

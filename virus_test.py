@@ -6,23 +6,26 @@ from queue import Queue
 import customtkinter as ctk
 from tkinter import messagebox
 from tkinter import scrolledtext
+from datetime import datetime
 
-# Paths
+
 CLAMAV_PATH = r"C:\Users\DeLL 6440\Downloads\clamav-1.4.2-r1-winxp-x64\clamscan.exe"
 CLAMAV_DB = os.path.join(os.path.dirname(CLAMAV_PATH), "database")
 LOG_FILE = "scan_log.txt"
 
-# Globals
+
 log_queue = Queue()
 detected_usb_drives = []
+theme_mode = "dark"
 
-# Logging
 
 def log_message(msg):
-    log_queue.put(msg)
+    timestamp = datetime.now().strftime("[%Y-%m-%d %H:%M:%S]")
+    full_msg = f"{timestamp} {msg}"
+    log_queue.put(full_msg)
     try:
         with open(LOG_FILE, "a") as f:
-            f.write(msg + "\n")
+            f.write(full_msg + "\n")
     except Exception as e:
         print(f"[Log Error] {e}")
 
@@ -35,7 +38,7 @@ def update_log():
         log_box.configure(state="disabled")
     app.after(100, update_log)
 
-# Drive Detection
+
 
 def get_usb_drives():
     drives = []
@@ -53,7 +56,7 @@ def refresh_usb_list():
     else:
         drive_combo.set("")
 
-# Scan Logic
+
 
 def scan_usb(path):
     if not os.path.exists(CLAMAV_PATH):
@@ -124,7 +127,6 @@ def start_scan_thread():
     else:
         messagebox.showwarning("No USB", "Please select a valid USB drive.")
 
-# File Explorer
 
 def show_usb_contents():
     selected_drive = drive_combo.get()
@@ -147,47 +149,72 @@ def show_usb_contents():
     else:
         messagebox.showwarning("USB Not Found", "USB is not inserted or invalid.")
 
-# GUI Setup
+
+
+def toggle_theme():
+    global theme_mode
+    if theme_mode == "dark":
+        ctk.set_appearance_mode("light")
+        theme_btn.configure(text="☀")  
+        theme_mode = "light"
+    else:
+        ctk.set_appearance_mode("dark")
+        theme_btn.configure(text="☾")  
+        theme_mode = "dark"
+
+
 ctk.set_appearance_mode("dark")
 ctk.set_default_color_theme("blue")
 
 app = ctk.CTk()
-app.title("USB Malware Scanner - ClamAV Edition")
-app.geometry("850x600")
+app.title("USB Malware Scanner")
+app.geometry("900x620")
+app.resizable(False, False)
 
-header = ctk.CTkLabel(app, text="USB Malware Scanner", font=("Arial", 24, "bold"), text_color="lime")
-header.pack(pady=15)
 
-frame = ctk.CTkFrame(app)
-frame.pack(pady=10)
+header_frame = ctk.CTkFrame(app, fg_color="transparent")
+header_frame.pack(fill="x", pady=10, padx=10)
 
-drive_label = ctk.CTkLabel(frame, text="Select USB Drive:", font=("Arial", 14))
-drive_label.grid(row=0, column=0, padx=10, pady=10)
+header_label = ctk.CTkLabel(header_frame, text="🛡 USB Malware Scanner", font=("Arial", 26, "bold"), text_color="#00FF7F")
+header_label.pack(side="left")
 
-drive_combo = ctk.CTkComboBox(frame, width=200, values=[])
-drive_combo.grid(row=0, column=1, padx=10, pady=10)
+theme_btn = ctk.CTkButton(header_frame, text="☾", width=40, height=40, font=("Arial", 20), command=toggle_theme)
+theme_btn.pack(side="right")
 
-refresh_btn = ctk.CTkButton(frame, text="🔄 Refresh", command=refresh_usb_list)
+
+ctk.CTkLabel(app, text="—" * 120, text_color="gray").pack()
+
+
+drive_frame = ctk.CTkFrame(app)
+drive_frame.pack(pady=15)
+
+ctk.CTkLabel(drive_frame, text="📂 Select USB Drive:", font=("Arial", 14)).grid(row=0, column=0, padx=15)
+drive_combo = ctk.CTkComboBox(drive_frame, width=220)
+drive_combo.grid(row=0, column=1, padx=10)
+
+refresh_btn = ctk.CTkButton(drive_frame, text="🔄 Refresh", width=80, command=refresh_usb_list)
 refresh_btn.grid(row=0, column=2, padx=10)
 
-btn_frame = ctk.CTkFrame(app)
-btn_frame.pack(pady=15)
 
-scan_btn = ctk.CTkButton(btn_frame, text="🛡 Scan USB", command=start_scan_thread, width=150)
+btn_frame = ctk.CTkFrame(app)
+btn_frame.pack(pady=10)
+
+scan_btn = ctk.CTkButton(btn_frame, text="Start Scan 🧪", command=start_scan_thread, width=160, height=40)
 scan_btn.grid(row=0, column=0, padx=20)
 
-view_btn = ctk.CTkButton(btn_frame, text="📁 View Files", command=show_usb_contents, width=150)
+view_btn = ctk.CTkButton(btn_frame, text="View USB Files 📁", command=show_usb_contents, width=160, height=40)
 view_btn.grid(row=0, column=1, padx=20)
 
-progress_bar = ctk.CTkProgressBar(app, orientation="horizontal", width=400)
-progress_bar.pack(pady=10)
+
+progress_bar = ctk.CTkProgressBar(app, orientation="horizontal", width=600)
+progress_bar.pack(pady=15)
 progress_bar.set(0)
 
-log_label = ctk.CTkLabel(app, text="Scan Log:", font=("Arial", 14))
+log_label = ctk.CTkLabel(app, text="📜 Scan Log", font=("Arial", 14))
 log_label.pack(pady=5)
 
-log_box = scrolledtext.ScrolledText(app, width=100, height=18, font=("Consolas", 10))
-log_box.pack(pady=10)
+log_box = scrolledtext.ScrolledText(app, width=110, height=20, font=("Consolas", 10))
+log_box.pack(pady=10, padx=10)
 log_box.configure(state="disabled")
 
 refresh_usb_list()
